@@ -1,15 +1,16 @@
 // Include truYum form validation functions here
 function validation() {
-    var itemName = document.form["form"]["title"].value;
+    var itemName = document.forms["form"]["title"].value;
     if(itemName=="") {
         alert("Title is required.");
+		document.form.title.focus();
         return false;
     }
 	if ((itemName.length < 2) || (itemName.length > 30)) {
 		alert("Title should have 2 to 65 characters.");
         return false;
     }
-	var itemPrice = document.form["form"]["price"].value;
+	var itemPrice = document.forms["form"]["price"].value;
 	if(itemPrice=="") {
         alert("Price is required.");
         return false;
@@ -18,7 +19,7 @@ function validation() {
         alert("Price has to be a number.");
         return false;
     }
-	var launchDate = document.form["form"]["dateOfLaunch"].value;
+	var launchDate = document.forms["form"]["dateOfLaunch"].value;
 	if(launchDate=="") {
         alert("Date of Launch is required.");
         return false;
@@ -27,7 +28,7 @@ function validation() {
     alert("Price has to be a number.");
         return false;
     }
-	var itemCategory = document.form["form"]["category"].value;
+	var itemCategory = document.forms["form"]["category"].value;
     if(itemCategory=="") {
         alert("Category is required.");
         return false;

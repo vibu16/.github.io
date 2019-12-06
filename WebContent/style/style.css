@@ -22,6 +22,10 @@ img {
 label {
 	cursor: default;
 }
+table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
 .link-color {
 	color: #050505;
 }
