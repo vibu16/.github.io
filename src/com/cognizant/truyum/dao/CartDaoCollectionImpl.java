@@ -59,7 +59,7 @@ public class CartDaoCollectionImpl implements CartDao {
 		for (int i = 0; i < menuItemList.size(); i++) {
 			if (menuItemList.get(i).getId() == menuItemId) {
 				menuItemList.remove(i);
-
+				break;
 			}
 		}
 	}

@@ -46,6 +46,7 @@ public class CartDaoCollectionImplTest {
 		System.out.println("Item List for Customer after Remove");
 		try {
 			cartDao.removeCartItem(1, 2L);
+			cartDao.removeCartItem(1, 5L);
 			List<MenuItem> menuItemListCustomer = cartDao.getAllCartItems(1);
 			for (MenuItem menuItem : menuItemListCustomer) {
 				System.out.println(menuItem);

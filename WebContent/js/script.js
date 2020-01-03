@@ -15,7 +15,7 @@ function validation() {
         alert("Price is required.");
         return false;
     }
-	if(/[^0-9]/.test(itemPrice)) {
+	if(/[^0-9/.]/.test(itemPrice)) {
         alert("Price has to be a number.");
         return false;
     }
