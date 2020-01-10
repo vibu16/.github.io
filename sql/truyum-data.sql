@@ -1,7 +1,7 @@
 -- -----------------------------------------------------
 -- Adding Menu Items in MenuItem Table
 -- -----------------------------------------------------
-INSERT INTO menu_item(me_id,me_name,me_price,me_active,me_date_of_launch,me_category,me_free_delivery)
+INSERT INTO menu_item
 VALUES
 (1, 'Sandwich', 99.00, 'Yes', '2017/03/15','Main Course','Yes'),
 (2, 'Burger', 129.00, 'Yes', '2017/12/23','Main Course', 'No'),
