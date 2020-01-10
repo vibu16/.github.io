@@ -1,4 +1,4 @@
-package com.cogniant.truyum.servlet;
+package com.cognizant.truyum.servlet;
 
 import java.io.IOException;
 
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cognizant.truyum.dao.MenuItemDao;
-import com.cognizant.truyum.dao.MenuItemDaoCollectionImpl;
-import com.cognizant.truyum.model.MenuItem;
+import com.cognizant.truyum.dao.CartDao;
+import com.cognizant.truyum.dao.CartDaoCollectionImpl;
 
 /**
- * Servlet implementation class ShowEditMenuItemServlet
+ * Servlet implementation class AddToCartServlet
  */
-@WebServlet({ "/ShowEditMenuItemServlet", "/ShowEditMenuItem" })
-public class ShowEditMenuItemServlet extends HttpServlet {
+@WebServlet({ "/AddToCartServlet", "/AddToCart" })
+public class AddToCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowEditMenuItemServlet() {
+    public AddToCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +32,15 @@ public class ShowEditMenuItemServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-		MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
-		Long menuItemId = Long.parseLong(request.getParameter("id"));
-		MenuItem menuItem = menuItemDao.getMenuItem(menuItemId);
-		request.setAttribute("menuItem", menuItem);
-		RequestDispatcher rd = request.getRequestDispatcher("edit-menu-item.jsp");
-		rd.forward(request, response);
-		} catch(Exception ex) {
-			System.out.println(ex);
-		}
+            CartDao cartDao = new CartDaoCollectionImpl();
+            long menuItemId = Long.parseLong(request.getParameter("id"));
+            request.setAttribute("msg", "Item added to Cart successfully");
+            RequestDispatcher rd = request.getRequestDispatcher("ShowMenuItemListCustomer");
+            rd.forward(request, response);
+     } catch (Exception ex) {
+            ex.printStackTrace();
+     }
+
 	}
 
 	/**

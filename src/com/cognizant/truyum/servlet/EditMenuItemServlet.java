@@ -1,4 +1,4 @@
-package com.cogniant.truyum.servlet;
+package com.cognizant.truyum.servlet;
 
 import java.io.IOException;
 import java.util.Date;

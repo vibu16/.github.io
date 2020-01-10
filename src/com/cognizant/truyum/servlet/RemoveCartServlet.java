@@ -1,5 +1,4 @@
-
-package com.cogniant.truyum.servlet;
+package com.cognizant.truyum.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,21 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cognizant.truyum.dao.CartDao;
+import com.cognizant.truyum.dao.CartDaoCollectionImpl;
+import com.cognizant.truyum.dao.CartEmptyException;
 import com.cognizant.truyum.dao.MenuItemDao;
 import com.cognizant.truyum.dao.MenuItemDaoCollectionImpl;
 import com.cognizant.truyum.model.MenuItem;
 
 /**
- * Servlet implementation class ShowMenuItemListCustomerServlet
+ * Servlet implementation class RemoveCartServlet
  */
-@WebServlet({ "/ShowMenuItemListCustomerServlet", "/ShowMenuItemListCustomer" })
-public class ShowMenuItemListCustomerServlet extends HttpServlet {
+@WebServlet({ "/RemoveCartServlet", "/RemoveCart" })
+public class RemoveCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Default constructor.
+	 * @see HttpServlet#HttpServlet()
 	 */
-	public ShowMenuItemListCustomerServlet() {
+	public RemoveCartServlet() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -36,14 +39,17 @@ public class ShowMenuItemListCustomerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
-			List<MenuItem> menuItemList = menuItemDao.getMenuItemListCustomer();
-			request.setAttribute("menuItemList", menuItemList);
-			RequestDispatcher rd = request.getRequestDispatcher("menu-item-list-customer.jsp");
-			rd.forward(request, response);
+			CartDao cartDao = new CartDaoCollectionImpl();
+            long menuItemId = Long.parseLong(request.getParameter("id"));
+			cartDao.removeCartItem(1, menuItemId);
+			 request.setAttribute("msg", "Item Removed to Cart successfully");
+	            RequestDispatcher rd = request.getRequestDispatcher("ShowCart");
+	            rd.forward(request, response);
 		} catch (Exception ex) {
-			System.out.println(ex);
+			request.getRequestDispatcher("cart-empty.jsp").forward(request, response);
+
 		}
+
 	}
 
 	/**

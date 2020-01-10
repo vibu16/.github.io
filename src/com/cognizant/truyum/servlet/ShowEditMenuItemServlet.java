@@ -1,7 +1,6 @@
-package com.cogniant.truyum.servlet;
+package com.cognizant.truyum.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +14,16 @@ import com.cognizant.truyum.dao.MenuItemDaoCollectionImpl;
 import com.cognizant.truyum.model.MenuItem;
 
 /**
- * Servlet implementation class ShowMenuItemListAdminServlet
+ * Servlet implementation class ShowEditMenuItemServlet
  */
-@WebServlet({ "/ShowMenuItemListAdminServlet", "/ShowMenuItemListAdmin" })
-public class ShowMenuItemListAdminServlet extends HttpServlet {
+@WebServlet({ "/ShowEditMenuItemServlet", "/ShowEditMenuItem" })
+public class ShowEditMenuItemServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowMenuItemListAdminServlet() {
+    public ShowEditMenuItemServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,9 +34,10 @@ public class ShowMenuItemListAdminServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 		MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
-		List<MenuItem> menuItemList = menuItemDao.getMenuListAdmin();
-		request.setAttribute("menuItemList", menuItemList);
-		RequestDispatcher rd = request.getRequestDispatcher("menu-item-list-admin.jsp");
+		Long menuItemId = Long.parseLong(request.getParameter("id"));
+		MenuItem menuItem = menuItemDao.getMenuItem(menuItemId);
+		request.setAttribute("menuItem", menuItem);
+		RequestDispatcher rd = request.getRequestDispatcher("edit-menu-item.jsp");
 		rd.forward(request, response);
 		} catch(Exception ex) {
 			System.out.println(ex);
