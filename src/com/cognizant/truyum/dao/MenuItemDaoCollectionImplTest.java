@@ -8,7 +8,7 @@ import com.cognizant.truyum.util.DateUtil;
 
 public class MenuItemDaoCollectionImplTest {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 		try {
 			System.out.println("*********Admin List*******");
 			testGetMenuItemListAdmin();
@@ -20,12 +20,11 @@ public class MenuItemDaoCollectionImplTest {
 		} catch (ParseException e) {
 			System.out.println(e);
 		}
-
 	}
 
 	public static void testGetMenuItemListAdmin() throws ParseException {
 		MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
-		List<MenuItem> menuItemList = menuItemDao.getMenuListAdmin();
+		List<MenuItem> menuItemList = menuItemDao.getMenuItemListAdmin();
 		for (MenuItem x : menuItemList) {
 			System.out.println(x);
 		}
@@ -42,8 +41,8 @@ public class MenuItemDaoCollectionImplTest {
 	private static void testModifyMenuItem() throws ParseException {
 
 		MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
-		MenuItem menuItem = new MenuItem(1, "Fried Rice", 52.00f, true, DateUtil.convertToDate("15/03/2017"),
-				"FastFood", true);
+		MenuItem menuItem = new MenuItem(1, "Noodles", 50.0f, false, DateUtil.convertToDate("17/08/2019"), "Special",
+				false);
 		menuItemDao.modifyMenuItem(menuItem);
 
 	}

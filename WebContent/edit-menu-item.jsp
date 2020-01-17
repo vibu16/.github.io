@@ -5,67 +5,73 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Edit Menu Item</title>
-<link rel="stylesheet" type="text/CSS" href="./style/style.css" />
+<link rel="stylesheet" type="text/css" href="./style/style.css" />
 <script src="./js/script.js" type="text/javascript"></script>
 </head>
 <body>
-	<header> <span id="head">truYum</span> <img
-		src="./images/truyum-logo-light.png" /> <a id="nav-menu"
+	<header> <span>truYum</span> <img
+		src="./images/truyum-logo-light.png" /> <a id="menu"
 		href="ShowMenuItemListAdmin">Menu</a> </header>
-	<div>
-		<h2 class="content">Edit Menu Items</h2>
-		<form class="content" name="form" method="post"
-			onsubmit="return validation()"
-			action="EditMenuItem?id=${menuItem.id}">
+
+	<div class="cont">
+		<h2>Edit Menu Items</h2>
+		<form name="menucard" method="post"
+			action="EditMenuItem?menuItemId=${menuItem.id }"
+			onSubmit="return validation()">
 			<table>
 				<tr>
-					<td><label for="name-left"><b>Name</b></label>
-					<td>
+					<td colspan="4"><label for="name">Name</label></td>
 				</tr>
 				<tr>
-					<td colspan="4"><input type="text" name="title" id="name-left"
-						value="${menuItem.name}"></td>
+					<td colspan="4"><input class="area" type="text" id="name"
+						name="txtname" value="${menuItem.name}" size="80" /></td>
 				</tr>
 				<tr>
-					<td class="menu-space"><label for="al-right"><b>Price(Rs.)</b></label></td>
-					<td class="menu-space"><b>Active</b></td>
-					<td class="menu-space"><label for="dol"><b>Date of
-								Launch</b></label></td>
-					<td class="menu-space"><label for="category"><b>Category</b></label></td>
+					<td><label for="txtprice">Price</label></td>
+					<td>Active</td>
+					<td><label for="launch">Date of Launch</label></td>
+					<td><label for="catt">Category</label></td>
+
 				</tr>
 				<tr>
-					<td><input type="text" name="price" id="al-right"
-						value="${menuItem.price}" /></td>
-					<td><input type="radio" name="inStock" value="Yes" id="Yes"
+					<td><input class="align-right" type="text" id="txtprice"
+						name="txtprice" value="${menuItem.price }" /></td>
+					<td><input type="radio" name="active" value="yes" id="price"
 						<c:if test="${menuItem.active eq 'true'}">Checked</c:if>><label
-						for="Yes">Yes </label> <label for="No"><input type="radio"
-							name="inStock" value="No" id="No"
+						for="price">Yes </label> <label for="price2"><input
+							type="radio" name="active" value="no" id="price2"
 							<c:if test="${menuItem.active eq 'false'}">Checked</c:if>>No</label>
 					</td>
-					<td><input type="text" id="dol" name="dateOfLaunch"
-						value=<fmt:formatDate type="date" pattern="dd/MM/yyyy" value="${menuItem.dateOfLaunch}" />></td>
-					<td><select name="category" id="category">
+					<td><fmt:formatDate type="date" pattern="dd/MM/yyyy"
+							value="${menuItem.dateOfLaunch}" var="formatDate" /> <input
+						type="text" id="launch" name="launch" value="${formatDate}">
+
+
+					</td>
+					<td><select name="catogory" id="catt">
 							<option value="${menuItem.category}">${menuItem.category}</option>
-							<option value="starters">Starters</option>
-							<option value="main course">Main Course</option>
-							<option value="dessert">Dessert</option>
-							<option value="drinks">Drinks</option>
+							<option value="Starters">Starters</option>
+							<option value="Main Corse">Main course</option>
+							<option value="Deserts">Deserts</option>
+							<option value="Drinks">Drinks</option>
 					</select></td>
 				</tr>
 				<tr>
-					<td><label for="Free Delivery"><input type="checkbox"
-							id="Free Delivery" name="freeDelivery"
-							<c:if test="${menuItem.freeDelivery eq 'true'}">Checked</c:if>
-							<c:if test="${menuItem.freeDelivery eq 'false'}"></c:if>>Free
-							Delivery</label>
+					<td colspan="2"><input type="checkbox" name="Chbox"
+						<c:if test="${menuItem.freeDelivery eq 'true'}">Checked</c:if>
+						<c:if test="${menuItem.freeDelivery eq 'false'}"></c:if>>
+						<label for="chbox">Free Delivery</label></td>
 				</tr>
 				<tr>
-					<td><input type="submit" class="button" value="Save"></td>
+					<td colspan="2"><input class="bt" type="submit" value="Save"
+						name="submit" onClick="validate" /></td>
 				</tr>
 			</table>
 		</form>
 	</div>
-	<footer> <span id="text-margin">Copyright @ 2019</span> </footer>
+
+	<footer>
+	<h3>Copyright@2019</h3>
+	</footer>
 </body>
 </html>

@@ -14,22 +14,21 @@ public class MenuItemDaoCollectionImpl implements MenuItemDao {
 	public MenuItemDaoCollectionImpl() throws ParseException {
 		if (menuItemList == null) {
 			menuItemList = new ArrayList<>();
-			menuItemList.add(new MenuItem(1, "Sandwich", 99.00f, true, DateUtil.convertToDate("15/03/2017"),
+			menuItemList.add(new MenuItem(1, "Sandwitch", 99.0f, true, DateUtil.convertToDate("15/03/2017"),
 					"Main Course", true));
-			menuItemList.add(new MenuItem(2, "Burger", 129.00f, true, DateUtil.convertToDate("23/12/2017"),
+			menuItemList.add(new MenuItem(2, "Burger", 129.0f, true, DateUtil.convertToDate("23/12/2017"),
 					"Main Course", false));
-			menuItemList.add(new MenuItem(3, "Pizza", 149.00f, true, DateUtil.convertToDate("21/08/2018"),
-					"Main Course", false));
-			menuItemList.add(new MenuItem(4, "French Fries", 57.00f, false, DateUtil.convertToDate("02/07/2017"),
+			menuItemList.add(
+					new MenuItem(3, "Pizza", 149.0f, true, DateUtil.convertToDate("21/08/2018"), "Main Course", false));
+			menuItemList.add(new MenuItem(4, "French Fries", 57.0f, false, DateUtil.convertToDate("02/07/2017"),
 					"Starters", true));
-			menuItemList.add(new MenuItem(5, "Chocolate Brownie", 32.00f, true, DateUtil.convertToDate("02/11/2022"),
+			menuItemList.add(new MenuItem(5, "Chocolate Brownie", 32.0f, true, DateUtil.convertToDate("02/11/2022"),
 					"Dessert", true));
 		}
 	}
 
 	@Override
-	public List<MenuItem> getMenuListAdmin() {
-
+	public List<MenuItem> getMenuItemListAdmin() {
 		return menuItemList;
 	}
 
@@ -42,7 +41,6 @@ public class MenuItemDaoCollectionImpl implements MenuItemDao {
 				customerList.add(x);
 			}
 		}
-
 		return customerList;
 	}
 
@@ -55,13 +53,11 @@ public class MenuItemDaoCollectionImpl implements MenuItemDao {
 		x.setDateOfLaunch(menuItem.getDateOfLaunch());
 		x.setCategory(menuItem.getCategory());
 		x.setFreeDelivery(menuItem.isFreeDelivery());
-
 	}
 
 	@Override
 	public MenuItem getMenuItem(long menuItemId) {
 		MenuItem menuItem = null;
-
 		for (MenuItem x : menuItemList) {
 			if (x.getId() == menuItemId) {
 				menuItem = x;
@@ -70,5 +66,4 @@ public class MenuItemDaoCollectionImpl implements MenuItemDao {
 		}
 		return menuItem;
 	}
-
 }

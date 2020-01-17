@@ -1,42 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Menu Item List Customer</title>
-<link rel="stylesheet" type="text/CSS" href="./style/style.css" />
+<title>Menu List</title>
+<link rel="stylesheet" type="text/css" href="./style/style.css" />
 </head>
+
 <body>
-	<header> <span id="head">truYum</span> <img
-		src="./images/truyum-logo-light.png" /> <a id="nav-menu"
-		href="ShowCart">Cart</a> <a id="nav-menu"
-		href="ShowMenuItemListCustomer">Menu</a> </header>
-	<div>
-		<h2 class="content">Menu Items</h2>
-		              <p id="center">${msg }</p>
-		<table class="content">
+	<header> <span>truYum</span> <img class="img"
+		src="./images/truyum-logo-light.png"/ > <a id="cart"
+		href="ShowCart">Cart</a> <a id="menu" href="ShowMenuItemListCustomer">Menu</a>
+
+	</header>
+
+
+	<div class="cont">
+
+		<h2>Menu Items</h2>
+		<table>
+			<p>${addCartStatus}</p>
 			<tr>
-				<th class="title-name">Name</th>
-				<th class="title-text">Free Delivery</th>
-				<th class="title-price">Price</th>
-				<th class="title-text">Category</th>
-				<th class="title-text">Action</th>
+				<th class="align-left">Name</th>
+				<th class="align-cent">Free Delivery</th>
+				<th class="align-cent">Price</th>
+				<th class="align-cent">Category</th>
+				<th class="align-cent">Action</th>
 			</tr>
-			<c:forEach items="${ menuItemList}" var="menuItem">
+			<c:forEach items="${menuItemList}" var="menu">
 				<tr>
-					<td class="title-name">${menuItem.name}</td>
-					<td class="title-text"><c:if test="${menuItem.freeDelivery}">yes</c:if>
-						<c:if test="${!menuItem.freeDelivery}">No</c:if></td>
-					<td class="title-price">Rs.${menuItem.price}</td>
-					<td class="title-text">${menuItem.category}</td>
-					<td class="title-text"><a href="AddToCart?id=${menuItem.id}">Add
-							to Cart</a></td>
+					<td class="align-left">${menu.name}</td>
+					<td class="align-cent"><c:if test="${menu.freeDelivery}">Yes</c:if>
+						<c:if test="${!menu.freeDelivery}">No</c:if></td>
+					<td class="align-cent">${menu.price}</td>
+					<td class="align-cent">${menu.category}</td>
+					<td class="align-cent"><a
+						href="AddToCart?menuItemId=${menu.id}">Add to Cart</a></td>
+
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-	<footer> <span id="text-margin">Copyright @ 2019</span> </footer>
+
+	<footer>
+	<h3>Copyright@2019</h3>
+	</footer>
 </body>
 </html>

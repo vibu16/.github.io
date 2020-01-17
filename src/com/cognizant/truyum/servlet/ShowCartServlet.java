@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cognizant.truyum.dao.CartDao;
-import com.cognizant.truyum.dao.CartDaoCollectionImpl;
+import com.cognizant.truyum.dao.CartDaoSqlImpl;
 import com.cognizant.truyum.model.MenuItem;
 
 /**
@@ -35,9 +34,9 @@ public class ShowCartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		CartDaoSqlImpl cartDaoSqlImpl = new CartDaoSqlImpl();
 		try {
-			CartDao cartDao = new CartDaoCollectionImpl();
-			List<MenuItem> menuItemListCustomer = cartDao.getAllCartItems(1);
+			List<MenuItem> menuItemListCustomer = cartDaoSqlImpl.getAllCartItems(1);
 			request.setAttribute("menuItemListCustomer", menuItemListCustomer);
 			double tot = 0;
 			for (MenuItem menuItem : menuItemListCustomer) {
@@ -46,7 +45,6 @@ public class ShowCartServlet extends HttpServlet {
 			}
 			RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
 			rd.forward(request, response);
-
 		} catch (Exception ex) {
 			request.getRequestDispatcher("cart-empty.jsp").forward(request, response);
 		}

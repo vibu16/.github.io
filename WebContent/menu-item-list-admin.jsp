@@ -5,42 +5,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Admin Menu Item List</title>
-<link rel="stylesheet" type="text/CSS" href="./style/style.css" />
+<title>Menu List</title>
+<link rel="stylesheet" type="text/css" href="./style/style.css" />
 </head>
 <body>
-	<header> <span id="head">truYum</span> <img
-		src="./images/truyum-logo-light.png" /> <a id="nav-menu"
+	<header> <span>truYum</span> <img
+		src="./images/truyum-logo-light.png"/ > <a id="menu"
 		href="ShowMenuItemListAdmin">Menu</a> </header>
-	<div>
-		<h2 class="content">Menu Items</h2>
-		<table class="content">
+
+	<div class="cont">
+		<h2>Menu Items</h2>
+		<table>
 			<tr>
-				<th class="title-name">Name</th>
-				<th class="title-price">Price</th>
-				<th class="title-text">Active</th>
-				<th class="title-text">Date of Launch</th>
-				<th class="title-text">Category</th>
-				<th class="title-text">Free Delivery</th>
-				<th class="title-text">Action</th>
+				<th class="align-left">Name</th>
+				<th class="align-right">Price</th>
+				<th class="align-cent">Active</th>
+				<th class="align-cent">Date of Launch</th>
+				<th class="align-cent">Category</th>
+				<th class="align-cent">Free Delivery</th>
+				<th class="align-cent">Action</th>
 			</tr>
-			<c:forEach items="${ menuItemList}" var="menuItem">
+			<c:forEach items="${menuItemList}" var="menu">
 				<tr>
-					<td class="title-name">${menuItem.name}</td>
-					<td class="title-price">Rs.${menuItem.price}</td>
-					<td class="title-text"><c:if test="${menuItem.active}">Yes</c:if>
-						<c:if test="${!menuItem.active}">No</c:if></td>
-					<td class="title-text"><fmt:formatDate pattern="dd/MM/yyyy"
-							value="${menuItem.dateOfLaunch}" /></td>
-					<td class="title-text">${menuItem.category}</td>
-					<td class="title-text"><c:if test="${menuItem.freeDelivery}">yes</c:if>
-						<c:if test="${!menuItem.freeDelivery}">No</c:if></td>
-					<td class="title-text"><a
-						href="ShowEditMenuItem?id=${menuItem.id}">Edit</a></td>
+					<td class="align-left">${menu.name}</td>
+					<td class="align-right">${menu.price}</td>
+					<td class="align-cent"><c:if test="${menu.active}">Yes</c:if>
+						<c:if test="${!menu.active}">No</c:if></td>
+					<td class="align-cent"><fmt:formatDate pattern="dd/MM/yyyy"
+							value="${menu.dateOfLaunch}" /></td>
+					<td class="align-cent">${menu.category}</td>
+					<td class="align-cent"><c:if test="${menu.freeDelivery}">Yes</c:if>
+						<c:if test="${!menu.freeDelivery}">No</c:if></td>
+					<td class="align-cent"><a
+						href="ShowEditMenuItem?menuItemId=${menu.id}" target="_blank">Edit</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-	<footer> <span id="text-margin">Copyright @ 2019</span> </footer>
+
+
+	<footer>
+	<h3>Copyright@2019</h3>
+	</footer>
 </body>
 </html>

@@ -10,11 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cognizant.truyum.dao.CartDao;
-import com.cognizant.truyum.dao.CartDaoCollectionImpl;
-import com.cognizant.truyum.dao.CartEmptyException;
-import com.cognizant.truyum.dao.MenuItemDao;
-import com.cognizant.truyum.dao.MenuItemDaoCollectionImpl;
+import com.cognizant.truyum.dao.CartDaoSqlImpl;
 import com.cognizant.truyum.model.MenuItem;
 
 /**
@@ -39,12 +35,14 @@ public class RemoveCartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			CartDao cartDao = new CartDaoCollectionImpl();
-            long menuItemId = Long.parseLong(request.getParameter("id"));
-			cartDao.removeCartItem(1, menuItemId);
-			 request.setAttribute("msg", "Item Removed to Cart successfully");
-	            RequestDispatcher rd = request.getRequestDispatcher("ShowCart");
-	            rd.forward(request, response);
+			CartDaoSqlImpl cartDaoSqlImpl = new CartDaoSqlImpl();
+			long menuItemId = Long.parseLong(request.getParameter("menuItemId"));
+			cartDaoSqlImpl.removeCartItem(1, menuItemId);
+			List<MenuItem> menuItemListCustomer = cartDaoSqlImpl.getAllCartItems(1);
+			request.setAttribute("menuItemListCustomer", menuItemListCustomer);
+			request.setAttribute("msg", "Cart Item removed successfully");
+			RequestDispatcher rd = request.getRequestDispatcher("ShowCart");
+			rd.forward(request, response);
 		} catch (Exception ex) {
 			request.getRequestDispatcher("cart-empty.jsp").forward(request, response);
 
