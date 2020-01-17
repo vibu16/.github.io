@@ -11,7 +11,7 @@ public class ConnectionHandler {
 	public static Connection getConnection() {
 		Connection con = null;
 		try {
-			Class current = DateUtil.class;
+			Class current = ConnectionHandler.class;
 			ClassLoader currentLoader = current.getClassLoader();
 			InputStream input = currentLoader.getResourceAsStream("connection.properties");
 
